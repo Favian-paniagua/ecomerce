@@ -28,10 +28,11 @@ a:hover { color: #1B2A4A; }
 .on-dark:focus-visible { outline-color: #E5BC2C; }
 
 .topbar {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.6);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45), 0 10px 30px -14px rgba(20, 32, 58, 0.35);
+  transition: background-color 200ms ease;
 }
 
 @keyframes rise {
@@ -134,7 +135,7 @@ html.reveal-ready .reveal:not([data-visible]) { opacity: 0; }
     linear-gradient(180deg, rgba(255, 255, 255, 0) 70%, #FFFFFF 100%),
     linear-gradient(90deg, rgba(20, 32, 58, 0.94) 0%, rgba(20, 32, 58, 0.84) 30%, rgba(20, 32, 58, 0.35) 54%, rgba(20, 32, 58, 0) 70%);
 }
-.hero-content { position: relative; min-height: clamp(560px, 52vw, 760px); padding-top: 56px; padding-bottom: 150px; box-sizing: border-box; }
+.hero-content { position: relative; min-height: clamp(620px, 56vw, 820px); padding-top: 110px; padding-bottom: 150px; box-sizing: border-box; }
 .hero-content > * { max-width: 34rem; }
 .hero-eyebrow { color: #C9D2E3; }
 .hero-title { color: #FFFFFF; }
@@ -159,6 +160,9 @@ html.reveal-ready .reveal:not([data-visible]) { opacity: 0; }
   animation: glow-in 1000ms ease-out 650ms backwards;
 }
 @keyframes glow-in { from { opacity: 0; } }
+
+/* Franja azul con bordes desvanecidos */
+.fade-band { background: linear-gradient(180deg, #FFFFFF 0, #14203A 150px, #14203A calc(100% - 150px), #FFFFFF 100%); }
 
 /* Iconos de los módulos */
 .acc-icon { border-radius: 50%; transition: background-color 200ms ease; }
@@ -218,9 +222,10 @@ html.reveal-ready .reveal:not([data-visible]) { opacity: 0; }
 <body>
 <div class="page" style="font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; color: #1B2A4A; background: #FFFFFF; font-size: 17px; line-height: 1.5; overflow-x: clip">
 
-<header class="topbar" style="position: sticky; top: 0; z-index: 50">
-<div style="max-width: 1040px; margin: 0 auto; padding-left: clamp(20px, 5vw, 40px); padding-right: clamp(20px, 5vw, 40px); min-height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
-<a class="navlink" href="#inicio" style="font-weight: 600; font-size: 16px; letter-spacing: -0.02em; color: #1B2A4A; text-decoration: none; padding: 12px 0; white-space: nowrap">Experto en E-commerce</a>
+<header class="navwrap" style="position: sticky; top: 0; z-index: 50; height: 0">
+<div style="max-width: 960px; margin: 0 auto; padding: 10px clamp(12px, 3vw, 24px) 0">
+<div class="topbar" style="position: relative; border-radius: 999px; min-height: 52px; padding: 0 6px 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<a class="navlink" href="#inicio" style="font-weight: 600; font-size: 15px; letter-spacing: -0.02em; color: #1B2A4A; text-decoration: none; padding: 12px 0; white-space: nowrap">Experto en E-commerce</a>
 <nav aria-label="Secciones" style="display: flex; align-items: center; gap: 8px">
 <div class="navlinks" style="align-items: center">
 <a class="navlink" href="#programa" style="color: #5B6680; text-decoration: none; font-size: 14px; padding: 12px 12px">Programa</a>
@@ -228,7 +233,7 @@ html.reveal-ready .reveal:not([data-visible]) { opacity: 0; }
 <a class="navlink" href="#certificacion" style="color: #5B6680; text-decoration: none; font-size: 14px; padding: 12px 12px">Certificación</a>
 </div>
 <a class="press btn-ink bar-cta" href="#inscripcion" style="align-items: center; min-height: 40px; padding: 0 18px; border-radius: 999px; background-color: #1B2A4A; color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 14px">Inscribirme</a>
-<button class="menu-btn" type="button" aria-label="Menú" aria-expanded="false" aria-controls="menu-movil" style="align-items: center; justify-content: center; width: 44px; height: 44px; margin-right: -10px; padding: 0; background: transparent; border: 0; border-radius: 12px; cursor: pointer">
+<button class="menu-btn" type="button" aria-label="Menú" aria-expanded="false" aria-controls="menu-movil" style="align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; background: transparent; border: 0; border-radius: 12px; cursor: pointer">
 <span aria-hidden="true" style="position: relative; display: block; width: 20px; height: 14px">
 <span class="bar bar-1" style="position: absolute; left: 0; width: 20px; height: 2px; border-radius: 2px; background: #1B2A4A; top: 0"></span>
 <span class="bar bar-2" style="position: absolute; left: 0; width: 20px; height: 2px; border-radius: 2px; background: #1B2A4A; top: 6px"></span>
@@ -236,14 +241,15 @@ html.reveal-ready .reveal:not([data-visible]) { opacity: 0; }
 </span>
 </button>
 </nav>
-</div>
-<div class="mobile-menu" id="menu-movil" style="position: absolute; top: 100%; left: 0; right: 0; background: #FFFFFF; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), 0 24px 40px -24px rgba(0, 0, 0, 0.25)">
-<nav aria-label="Menú" style="display: flex; flex-direction: column; padding: 4px clamp(20px, 5vw, 40px) 20px">
+<div class="mobile-menu" id="menu-movil" style="position: absolute; top: calc(100% + 8px); left: 0; right: 0; background: #FFFFFF; border-radius: 24px; box-shadow: 0 0 0 1px rgba(20, 32, 58, 0.06), 0 24px 48px -20px rgba(20, 32, 58, 0.35)">
+<nav aria-label="Menú" style="display: flex; flex-direction: column; padding: 6px 20px 20px">
 <a href="#programa" style="display: flex; align-items: center; min-height: 52px; color: #1B2A4A; text-decoration: none; font-size: 18px; font-weight: 500; letter-spacing: -0.01em; border-bottom: 1px solid #E2E6EE">Programa</a>
 <a href="#docente" style="display: flex; align-items: center; min-height: 52px; color: #1B2A4A; text-decoration: none; font-size: 18px; font-weight: 500; letter-spacing: -0.01em; border-bottom: 1px solid #E2E6EE">Docente</a>
 <a href="#certificacion" style="display: flex; align-items: center; min-height: 52px; color: #1B2A4A; text-decoration: none; font-size: 18px; font-weight: 500; letter-spacing: -0.01em; border-bottom: 1px solid #E2E6EE">Certificación</a>
 <a class="press btn-ink" href="#inscripcion" style="display: flex; align-items: center; justify-content: center; min-height: 52px; margin-top: 16px; border-radius: 999px; background-color: #1B2A4A; color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 17px">Inscribirme por 250 Bs</a>
 </nav>
+</div>
+</div>
 </div>
 </header>
 <button class="menu-scrim" type="button" tabindex="-1" aria-label="Cerrar menú"></button>
@@ -264,7 +270,7 @@ html.reveal-ready .reveal:not([data-visible]) { opacity: 0; }
 </div>
 </section>
 
-<section id="programa" style="scroll-margin-top: 56px">
+<section id="programa" style="scroll-margin-top: 76px">
 <div style="max-width: 1040px; margin: 0 auto; padding-left: clamp(20px, 5vw, 40px); padding-right: clamp(20px, 5vw, 40px); padding-top: clamp(72px, 11vw, 144px); padding-bottom: clamp(72px, 11vw, 144px); display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px)">
 <div style="display: flex; flex-direction: column; gap: 12px">
 <span style="font-size: 13px; font-weight: 500; letter-spacing: 0.01em; color: #5B6680">Programa</span>
@@ -359,34 +365,34 @@ html.reveal-ready .reveal:not([data-visible]) { opacity: 0; }
 </div>
 </section>
 
-<section style="border-top: 1px solid #E2E6EE">
-<div style="max-width: 1040px; margin: 0 auto; padding-left: clamp(20px, 5vw, 40px); padding-right: clamp(20px, 5vw, 40px); padding-top: clamp(72px, 11vw, 144px); padding-bottom: clamp(72px, 11vw, 144px); display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px)">
+<section class="fade-band" style="color: #FFFFFF">
+<div style="max-width: 1040px; margin: 0 auto; padding-left: clamp(20px, 5vw, 40px); padding-right: clamp(20px, 5vw, 40px); padding-top: clamp(150px, 17vw, 210px); padding-bottom: clamp(150px, 17vw, 210px); display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px)">
 <div style="display: flex; flex-direction: column; gap: 12px; max-width: 760px">
-<span style="font-size: 13px; font-weight: 500; letter-spacing: 0.01em; color: #5B6680">Qué te llevas</span>
+<span style="font-size: 13px; font-weight: 500; letter-spacing: 0.01em; color: #E5BC2C">Qué te llevas</span>
 <h2 style="margin: 0; font-weight: 600; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; letter-spacing: -0.035em; text-wrap: balance">Tu tienda diseñada, en cuatro entregables.</h2>
 </div>
 <div class="reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr)); gap: 28px 32px">
-<div style="display: flex; flex-direction: column; gap: 6px; padding-top: 18px; border-top: 1px solid #1B2A4A">
+<div style="display: flex; flex-direction: column; gap: 6px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.28)">
 <h3 style="margin: 0; font-weight: 600; font-size: 18px; line-height: 1.25; letter-spacing: -0.015em">Plataforma justificada</h3>
-<p style="margin: 0; color: #5B6680; font-size: 16px">La plataforma elegida para tu negocio y las razones de la elección.</p>
+<p style="margin: 0; color: #B8C3D8; font-size: 16px">La plataforma elegida para tu negocio y las razones de la elección.</p>
 </div>
-<div style="display: flex; flex-direction: column; gap: 6px; padding-top: 18px; border-top: 1px solid #1B2A4A">
+<div style="display: flex; flex-direction: column; gap: 6px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.28)">
 <h3 style="margin: 0; font-weight: 600; font-size: 18px; line-height: 1.25; letter-spacing: -0.015em">Flujo de compra end-to-end</h3>
-<p style="margin: 0; color: #5B6680; font-size: 16px">El recorrido completo de una compra en tu canal.</p>
+<p style="margin: 0; color: #B8C3D8; font-size: 16px">El recorrido completo de una compra en tu canal.</p>
 </div>
-<div style="display: flex; flex-direction: column; gap: 6px; padding-top: 18px; border-top: 1px solid #1B2A4A">
+<div style="display: flex; flex-direction: column; gap: 6px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.28)">
 <h3 style="margin: 0; font-weight: 600; font-size: 18px; line-height: 1.25; letter-spacing: -0.015em">Propuesta de logística y pagos</h3>
-<p style="margin: 0; color: #5B6680; font-size: 16px">Cómo cobras y cómo entregas, con los medios disponibles en Bolivia.</p>
+<p style="margin: 0; color: #B8C3D8; font-size: 16px">Cómo cobras y cómo entregas, con los medios disponibles en Bolivia.</p>
 </div>
-<div style="display: flex; flex-direction: column; gap: 6px; padding-top: 18px; border-top: 1px solid #1B2A4A">
+<div style="display: flex; flex-direction: column; gap: 6px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.28)">
 <h3 style="margin: 0; font-weight: 600; font-size: 18px; line-height: 1.25; letter-spacing: -0.015em">Mapa de procesos</h3>
-<p style="margin: 0; color: #5B6680; font-size: 16px">Los procesos de tu operación, ordenados y listos para automatizar.</p>
+<p style="margin: 0; color: #B8C3D8; font-size: 16px">Los procesos de tu operación, ordenados y listos para automatizar.</p>
 </div>
 </div>
 </div>
 </section>
 
-<section id="docente" style="scroll-margin-top: 56px; border-top: 1px solid #E2E6EE">
+<section id="docente" style="scroll-margin-top: 76px">
 <div style="max-width: 1040px; margin: 0 auto; padding-left: clamp(20px, 5vw, 40px); padding-right: clamp(20px, 5vw, 40px); padding-top: clamp(72px, 11vw, 144px); padding-bottom: clamp(72px, 11vw, 144px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: clamp(32px, 6vw, 72px); align-items: center">
 <div class="reveal" style="position: relative; overflow: hidden; width: 100%; max-width: 440px; aspect-ratio: 4 / 5; border-radius: 28px; background: #EEF1F6">
 <div style="position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center">
@@ -406,7 +412,7 @@ html.reveal-ready .reveal:not([data-visible]) { opacity: 0; }
 </div>
 </section>
 
-<section id="certificacion" style="scroll-margin-top: 56px; background: #EEF1F6">
+<section id="certificacion" style="scroll-margin-top: 76px; background: #EEF1F6">
 <div style="max-width: 1040px; margin: 0 auto; padding-left: clamp(20px, 5vw, 40px); padding-right: clamp(20px, 5vw, 40px); padding-top: clamp(72px, 11vw, 144px); padding-bottom: clamp(72px, 11vw, 144px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(28px, 4vw, 44px)">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 12px">
 <span style="font-size: 13px; font-weight: 500; letter-spacing: 0.01em; color: #5B6680">Certificación</span>
@@ -426,7 +432,7 @@ html.reveal-ready .reveal:not([data-visible]) { opacity: 0; }
 </div>
 </section>
 
-<section id="inscripcion" style="scroll-margin-top: 56px">
+<section id="inscripcion" style="scroll-margin-top: 76px">
 <div style="max-width: 1040px; margin: 0 auto; padding-left: clamp(20px, 5vw, 40px); padding-right: clamp(20px, 5vw, 40px); padding-top: clamp(40px, 6vw, 80px); padding-bottom: clamp(56px, 8vw, 104px)">
 <div class="reveal" style="background: #14203A; color: #FFFFFF; border-radius: clamp(24px, 3vw, 36px); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 30px 60px -30px rgba(20, 32, 58, 0.6); padding: clamp(48px, 8vw, 96px) clamp(24px, 5vw, 64px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px">
 <span style="font-size: 13px; font-weight: 500; letter-spacing: 0.01em; color: #E5BC2C">Inscripción</span>
@@ -437,7 +443,7 @@ html.reveal-ready .reveal:not([data-visible]) { opacity: 0; }
 </div>
 </section>
 
-<footer id="contacto" style="background: #14203A; color: #D3D9E5; scroll-margin-top: 56px">
+<footer id="contacto" style="background: #14203A; color: #D3D9E5; scroll-margin-top: 76px">
 <div style="max-width: 1040px; margin: 0 auto; padding-left: clamp(20px, 5vw, 40px); padding-right: clamp(20px, 5vw, 40px); padding-top: clamp(36px, 5vw, 56px); padding-bottom: clamp(28px, 4vw, 40px); display: flex; flex-direction: column; gap: clamp(28px, 4vw, 44px)">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 20px clamp(32px, 6vw, 72px)">
 <div style="display: flex; flex-direction: column; gap: 10px">
